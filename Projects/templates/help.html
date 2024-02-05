@@ -1,0 +1,71 @@
+{% extends "index.html" %}
+{% block title %}ToDo List/ Help{% endblock title %}
+{% load static %}
+{% block body %}
+<div class="container-fluid">
+
+    <h1 class="">How Can I Help You?</h1><hr>
+
+    <div class="row">
+        <div class="col-md-5">
+            <img src="{% static 'images/signup_page.png' %}" alt="login page" class="ms-5">
+        </div>
+        <div class="col-md-6 mt-5">
+            <h3 class="fs-1 mt-5">How to Signup a Page?</h3>
+            <ul class="fs-4">
+                <li>We want to signup before login.</li>
+                <li>Details we need is Username, Firstname, Lastname, Email, New Password, Conform Password.</li>
+                <li>Username must be Unique and Email id must want to use one time.</li>
+                <li>New Password and Conform Password Want to be Same.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        
+        <div class="col-md-6 mt-5">
+            <h3 class="fs-1 ms-5 mt-5">How to Login a Page?</h3>
+            <ul class="fs-4 ms-5">
+                <li>In login we need Username and Password.</li>
+                <li>And we have <a href="https://www.google.com/recaptcha/about/">Google reCAPTCHA</a>. We want to Click that Checkbox.</li>
+                <li>Another way we have, We can use google login.</li>
+                
+            </ul>
+        </div>
+        <div class="col-md-5">
+            <img src="{% static 'images/login_page.png' %}" alt="login page" class="ms-5">
+        </div>
+    </div>
+
+    <div class="row mt-2">
+        <div class="col-md-5 mt-5">
+            <img src="{% static 'images/new_task.png' %}" alt="login page" class="ms-5 mt-5">
+        </div>
+        <div class="col-md-6 mt-5">
+            <h3 class="fs-1">How to Create a New Task and view a Task?</h3>
+            <ul class="fs-4">
+                <li>Click a New Task And You can Create a Task with a help of Title and Task. </li>
+                <li>Then Click View Task To See a Task.</li>
+                <li>If you need any Changes in Task You can Update a It using <i class="bi bi-pencil-square text-primary fs-3"></i> icon. </li>
+                <li>If you Complete a task You can Delete it Using <i class="bi bi-trash-fill text-danger fs-3"></i> icon.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        
+        <div class="col-md-6 mt-5">
+            <h3 class="fs-1">How to Create a New Document and view a Document?</h3>
+            <ul class="fs-4 ms-5">
+                <li>Click a New Task And You can Create a Document with a help of Title and Content Editor.</li>
+                <li>Then Click View Document To See a Document.</li>
+                <li>If you need any Changes in Task You can Update a It using <br> <i class="bi bi-pencil-square fs-3 text-primary">Update</i> icon.</li>
+                <li>You can delete a Document Using <i class="bi bi-trash-fill fs-3 text-danger">Delete</i> icon.</li>
+            </ul>
+        </div>
+        <div class="col-md-5 pt-5">
+            <img src="{% static 'images/new_document.png' %}" alt="login page" class="ms-5 mt-5">
+        </div>
+    </div>
+</div>
+{% endblock %}

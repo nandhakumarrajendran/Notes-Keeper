@@ -1,0 +1,17 @@
+{% extends "index.html" %}
+{% block title %}Todo/ Email Conformation{% endblock title %}
+{% block body %}
+    <div class="container col-md-4 mt-5 p-5">
+        <h1 class="text-center">Conform Email</h1><hr>
+        <p class="text-danger"><b>Please provide the email address that you used when you signed up for your account.</b></p>
+        
+        <form action="" method="post" class="form-group">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="form-control btn btn-success mt-3">Continue</button>
+
+            <p class="text-center m-2"><a href="login">Back To Login</a></p>
+        </form>
+        
+    </div>
+{% endblock %}

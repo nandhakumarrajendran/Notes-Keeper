@@ -1,0 +1,20 @@
+{% extends "index.html" %}
+{% block title %}ToDo List/ Password Reset Completed{% endblock title %}
+{% block body %}
+{% load static %}
+
+<div class="container mt-4">
+
+
+    <div class="container-fluid bg-light p-3 ">
+        <h3 class="text-center text-success brand">Password reset complete</h3>
+        <hr>
+        <div class="fs-4">
+            <p>Your password has been set. You may go ahead and log in now.</p>
+            <p><a href="/login">Login</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

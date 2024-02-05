@@ -1,0 +1,46 @@
+{% extends "index.html" %}
+{% block title %}ToDo List/ Login{% endblock title %}
+{% block body %}
+{% load static %}
+{% load socialaccount %}
+<div class="container mt-4 ">
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4 mt-3">
+            <div class="container bg-light p-3 rounded-3 shadow-lg">
+                <h3 class="text-center text-success brand">LOGIN</h3>
+                <hr>
+                <form action="login" method="post" class="form-group" autocomplete="off">
+                    {% csrf_token %}
+                    <input type="text" name="username" placeholder="USERNAME" class="form-control mb-3 fw-bold">
+                    <input type="password" name="password" placeholder="PASSWORD" required class="form-control mb-1 fw-bold">
+                    <div class="container-fluid text-end pe-0">
+                        <a href="reset_password/">Forgot Password</a>
+                    </div>
+                    <div class="m-2">
+                        {{form.captcha}}
+                    </div>
+                    <div class="d-grid gap-2 mt-3">
+                        <button type="submit" class="btn btn-success ">Login</button>
+                        <p class="text-end m-0">New User? <a href="signup">SignUp here</a></p>
+                        <div class="row">
+                            <div class="col-md-5 ps-3 p-0">
+                                <hr>
+                            </div>
+                            <div class="col-md-2 text-center p-1 ">OR</div>
+                            <div class="col-md-5 pe-3 p-0">
+                                <hr>
+                            </div>
+                        </div>
+                        <div class="btn btn-light border border-secondary"><a href="{% provider_login_url 'google' %}"
+                                class="text-dark fw-bold text-decoration-none"> <img
+                                    src="{% static 'images/google_icon.png' %}" alt="Google mail" height="20px">
+                                Continue With Google</a></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

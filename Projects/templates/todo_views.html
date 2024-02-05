@@ -1,0 +1,59 @@
+{% extends "index.html" %}
+{% block title %}Todo/ View Task{% endblock title %}
+{% load static %}
+
+{% block body %}
+
+<div class="container-fluid row ">
+    <div class="col-md-4">
+        <h1 class="ps-3 brand"><span class="text-success">S</span>ticky <span class="text-success">L</span>ist</h1>
+    </div>
+    <div class="col-md-4"></div>
+    <div class="col-md-4 mt-2">
+        <form class="d-flex" action="/todo/search" method="get">
+            <input class="form-control me-2" type="search" name="search" placeholder="Search Task..." aria-label="Search">
+            <button class="btn btn-success" type="submit">Search</button>
+        </form>
+    </div>
+    <hr>
+</div>
+{% if Tasks %}
+
+
+<div class="container-fluid mt-3">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for data in Tasks reversed %}
+            
+        <div >
+            <div class="card bg-{{data.Bgcolor}} text-light">
+                <div class="card-header row fs-2 m-0">
+                    <span class="col-md-6 mt-1 ps-0">{{data.Title}}</span>
+                    
+                </div>
+                <div class="card-body">
+                    <p class="card-text fs-4 ps-3">
+                        {{data.Task}}
+                    </p>
+                </div>
+                <div class="card-footer bg-transparent row fw-bold m-0">
+                    <span class="col-md-6 ps-0">{{data.Date}} {{data.Time}}</span>
+                    <span class="col-md-6 text-end">
+
+                        <button type="submit" class="btn btn-primary rounded-circle p-0 ps-2 pe-2">
+                            <a href="/todo/update/{{data.id}}" class="text-light">
+                                <i class="bi bi-pencil-square fs-3"></i></a></button>
+
+                        <button type="submit" class="btn btn-danger rounded-circle p-0 ps-2 pe-2">
+                            <a href="/todo/delete/{{data.id}}" class="text-light">
+                                <i class="bi bi-trash-fill fs-3"></i></a></button>
+                    </span>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endif %}
+
+{% endblock %}

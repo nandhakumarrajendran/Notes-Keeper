@@ -1,0 +1,56 @@
+{% extends "index.html" %}
+{% block title %}Todo/ View Task{% endblock title %}
+{% load static %}
+
+{% block body %}
+<div class="container-fluid row ">
+    <div class="col-md-4">
+        <h1 class="ps-3 brand"><span class="text-success">S</span>ticky <span class="text-success">L</span>ist</h1>
+    </div>
+    <hr>
+</div>
+
+<div class="text-center text-white">
+    {% if data|length < 1 %}
+    Your Search <b>{{query}}</b> did not Match
+        <ul>
+            <li>Make sure you have spelled correct</li>
+        </ul>
+    {% endif %}
+  </div>
+
+
+  <div class="container-fluid mt-3">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for datas in data %}
+            
+        <div >
+            <div class="card bg-{{datas.Bgcolor}} text-light">
+                <div class="card-header row fs-2 m-0">
+                    <span class="col-md-6 mt-1 ps-0">{{datas.Title}}</span>
+                    
+                </div>
+                <div class="card-body">
+                    <p class="card-text fs-4 ps-3">
+                        {{datas.Task}}
+                    </p>
+                </div>
+                <div class="card-footer bg-transparent row fw-bold m-0">
+                    <span class="col-md-6 ps-0">{{datas.Date}} {{datas.Time}}</span>
+                    <span class="col-md-6 text-end">
+
+                        <button type="submit" class="btn btn-primary rounded-circle p-0 ps-2 pe-2">
+                            <a href="/todo/update/{{datas.id}}" class="text-light">
+                                <i class="bi bi-pencil-square fs-3"></i></a></button>
+
+                        <button type="submit" class="btn btn-danger rounded-circle p-0 ps-2 pe-2">
+                            <a href="/todo/delete/{{datas.id}}" class="text-light">
+                                <i class="bi bi-trash-fill fs-3"></i></a></button>
+                    </span>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

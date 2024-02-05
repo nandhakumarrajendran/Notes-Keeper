@@ -1,0 +1,28 @@
+{% extends "index.html" %}
+{% block title %}Document/ Create Document{% endblock title %}
+{% load static %}
+{% block body %}
+
+<div class=" row text-dark me-0">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <h1 class="text-center brand"><span class="text-success">C</span>reate <span class="text-success">S</span>imple <span class="text-success">D</span>ocument</h1><hr>
+        <form method="post" class="form-group fs-3">
+            {% csrf_token %}
+            <div>
+                <label class="fw-bold">Title: </label>
+                <input type="text" name="title" required class="form-control mt-2 p-2 me-0">
+            </div>
+            <div class="mt-3 fw-bold">
+                {{ form.media }}
+                {{ form }}
+            </div>
+            <div class="mt-2 text-center">
+                <button type="submit" class="btn btn-success fw-bold">Create</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}

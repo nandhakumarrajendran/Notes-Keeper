@@ -1,0 +1,37 @@
+{% extends "index.html" %}
+{% block title %}ToDo List/ Contact Us{% endblock title %}
+{% load static %}
+{% block body %}
+
+<main class="container-fluid row mt-5 mb-4 ">
+    <div class="col-md-4"></div>
+    <div class="col-md-4 shadow-lg p-2 dropbox">
+        <h1 class="text-center brand"><span class="text-success">C</span>ontact <span class="text-success">U</span>s</h1>
+        <hr>
+        <form action="" method="post" class="form-group">
+            {% csrf_token %}
+            <div class="container mt-2">
+                <label class="fs-4 fw-bold">Name: </label>
+                <input type="text" name="name" class="form-control fs-5">
+            </div>
+            <div class="container mt-2">
+                <label class="fs-4 fw-bold">Email: </label>
+                <input type="email" name="email" class="form-control fs-5">
+            </div>
+            <div class="container mt-2">
+                <label class="fs-4 fw-bold">Phone No: </label>
+                <input type="tel" name="phone" class="form-control fs-5">
+            </div>
+            <div class="container mt-2">
+                <label class="fs-4 fw-bold">How can I help You? </label>
+                <textarea name="content" rows="5" class="form-control fs-5"></textarea>
+            </div>
+            <div class="container mt-2 text-center">
+                <button type="reset" class="btn btn-primary fs-5 me-3">Reset</button>
+                <button type="submit" class="btn btn-success fs-5">Submit</button>
+            </div>
+        </form>
+    </div>
+</main>
+
+{% endblock %}

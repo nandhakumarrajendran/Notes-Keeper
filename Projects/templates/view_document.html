@@ -1,0 +1,45 @@
+{% extends "index.html" %}
+{% block title %}Document/ View Document{% endblock title %}
+{% load static %}
+{% block body %}
+<div class="container-fluid row ps-0 pe-0">
+    <div class="col-md-4">
+        <h1 class="ps-3 brand"><span class="text-success">V</span>iews <span class="text-success">D</span>ocument</h1>
+    </div>
+    <div class="col-md-4"></div>
+    <div class="col-md-4 mt-2">
+        <form class="d-flex" action="/document/search" method="get">
+            <input class="form-control me-2" type="search" name="search" placeholder="Search Document..." aria-label="Search">
+            <button class="btn btn-success" type="submit">Search</button>
+        </form>
+    </div>
+    <hr>
+
+    {% if Tasks %}
+            {% for post in Tasks reversed %}
+                <div class="card container-fluid col-md-9 round mb-5">
+                    <div class="card-header row">
+                        <div class="col-md-8 ps-4">
+                            <h1 class="h1 fw-bold">{{ post.title }}</h1>
+                        </div>
+                        
+                        <div class="col-md-4 text-end pt-3">
+                            <h6 class="fs-5">{{post.date}} | {{post.time}}</h6>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                      
+                      <p class="card-text">{{ post.content|safe }}</p>
+                      
+                    </div>
+                    <div class="card-footer row p-2 pt-3">
+                        
+                        <div class="col-md-12 text-end ">
+                            <a href="/document/update/{{post.id}}" class="btn btn-primary me-3 fs-5"><i class="bi bi-pencil-square "></i> Update</a>
+                            <a href="/document/delete/{{post.id}}" class="btn btn-danger me-5 fs-5 ps-3 pe-3"><i class="bi bi-trash-fill "></i> Delete</a>
+                        </div>
+                    </div>
+                  </div>
+            {% endfor %}
+{% endif %}
+{% endblock %}

@@ -1,0 +1,157 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}{% endblock title %}</title>
+  <link rel="shortcut icon" href="{% static 'images/NK.png' %}" type="image/x-icon">
+
+  {% load bootstrap5 %}
+  {% bootstrap_css %}
+  {% bootstrap_javascript %}
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+
+ 
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-2">
+    <div class="container-fluid ">
+      <a class="navbar-brand brand fs-3" href="/"><span class="text-success fw-bold">N</span>otes <span
+          class="text-success fw-bold">K</span>eeper</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse ms-5" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 fs-5">
+          <li class="nav-item me-3">
+            <a class="nav-link active" aria-current="page" href="/">Home</a>
+          </li>
+          <li class="nav-item dropdown me-3">
+            <a class="nav-link dropdown-toggle text-light " href="/todo" id="navbarDropdown" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              Todo List
+            </a>
+            {% if request.user.is_authenticated %}
+            <ul class="dropdown-menu dropbox bg-dark " >
+              <li><a class="dropdown-item text-success fw-bold fs-5" href="/todo"><i class="bi bi-plus fs-4 p-0"></i> New Task</a></li>
+              <li><a class="dropdown-item text-success fw-bold fs-5" href="/todo/task_views"><i class="bi bi-list fs-4 p-0"></i> View Task</a></li>
+            </ul>
+            {% else %}
+            <ul class="dropdown-menu dropbox bg-dark " >
+              <li><a class="dropdown-item text-success fw-bold fs-5" href="/todo"><i class="bi bi-plus fs-4 p-0"></i> New Task</a></li>
+            </ul>
+            {% endif %}
+          </li>
+
+          <li class="nav-item dropdown me-3">
+            <a class="nav-link dropdown-toggle text-light " href="/document" id="navbarDropdown" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              Simple Document
+            </a>
+            {% if request.user.is_authenticated %}
+            <ul class="dropdown-menu dropbox bg-dark " >
+              <li><a class="dropdown-item text-success fw-bold fs-5" href="/document"><i class="bi bi-plus fs-4 p-0"></i> New Document</a></li>
+              <li><a class="dropdown-item text-success fw-bold fs-5" href="/document/view_document/"><i class="bi bi-list fs-4 p-0"></i> View Document</a></li>
+            </ul>
+            {% else %}
+            <ul class="dropdown-menu dropbox bg-dark " >
+              <li><a class="dropdown-item text-success fw-bold fs-5" href="/todo"><i class="bi bi-plus fs-4 p-0"></i> New Document</a></li>
+            </ul>
+            {% endif %}
+          </li>
+
+          <li class="nav-item me-3">
+            <a class="nav-link active" aria-current="page" href="/contact">Contact Us</a>
+          </li>
+          
+          <li class="nav-item me-3">
+            <a class="nav-link active" aria-current="page" title="?" href="/help">Help</a>
+          </li>
+        </ul>
+        {% if request.user.is_authenticated %}
+        <ul class="navbar-nav d-flex fs-5">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle  text-light " href="#" id="navbarDropdown" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="bi bi-person-fill"></i> {{ user.username.capitalize }}
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end dropbox bg-dark" aria-labelledby="navbarDropdown">
+              <hr class="m-1">
+              <li>
+                  <table class="table text-light fs-5 pt-0 border border-dark">
+                    <tr>
+                      <td class="fw-bold">UserName:</td>
+                      <td>{{user.username}}</td>
+                    </tr>
+                    <tr>
+                      <td class="fw-bold">Full Name:</td>
+                      <td>{{user.first_name}} {{user.last_name}}</td>
+                    </tr>
+                  </table>
+
+              </li>
+              <li><a class="dropdown-item fw-bold text-danger mt-1 pt-1 fs-5" href="/logout">
+                <i class="bi bi-box-arrow-right fs- p-1"></i> Logout</a></li>
+            </ul>
+          </li>
+        </ul>
+        {% else %}
+        <ul class="navbar-nav d-flex fs-5">
+          <li class="nav-item">
+            <a class="nav-link text-success" aria-current="page" href="login">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-success" aria-current="page" href="signup">SignUp</a>
+          </li>
+        </ul>
+        {% endif %}
+      </div>
+    </div>
+  </nav>
+
+  {% for message in messages %}
+  <div class="alert alert-{{message.tags}} container col-md-4 alert-dismissible fade show " role="alert">
+    <strong>{{message}}</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  {% endfor %}
+  {% block body %}
+
+  {% endblock %}
+
+
+  <!-- Remove the container if you want to extend the Footer to full width. -->
+<div class="container-fluid footer col-md-12 p-0 ">
+
+  <footer class="bg-dark text-center text-white  mb-0 pb-0">
+
+    <div class="container p-2 pb-2">
+      <!-- Section: Social media -->
+      <section class="mb-0 fw-bold">
+        <a href="/" class="text-light me-5"> Home</a>
+        <a href="/contact" class="text-light me-5"> Contact Us</a>
+        <a href="help" class="text-light">Help</a>
+
+      </section>
+      <!-- Section: Social media -->
+    </div>
+  <!-- Copyright -->
+  <div class="text-center fw-bold p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+    © 2024 Copyright:
+    <a class="text-white" href="http://127.0.0.1:8000/">NotesKeeper.com</a>
+  </div>
+  <!-- Copyright -->
+</footer>
+  
+</div>
+<!-- End of .container -->
+</body>
+
+</html>
